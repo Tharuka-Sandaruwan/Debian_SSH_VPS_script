@@ -1,7 +1,7 @@
 <b>
-Default \e[102mLight green </br>
-Default \e[101mLight red </br>
-Default \e[91mLight red </br>
-Default \e[92mLight green </br>
+Default \e[102mLight green <br>
+Default \e[101mLight red <br>
+Default \e[91mLight red <br>
+Default \e[92mLight green <br>
 Default \e[105mLight magenta  
-Default \e[96mLight cyan
+Default \e[96mLight cyan </b>
