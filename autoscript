@@ -118,5 +118,5 @@ curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
 sudo apt-get install speedtest
 
 
-read -n1 -r -p " \e[92m     Setting up the VPS is complete! Press Any Key To Reboot....        "
+read -n1 -r -p "    Setting up the VPS is complete! Press Any Key To Reboot....        "
 reboot
