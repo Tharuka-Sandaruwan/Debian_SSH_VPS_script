@@ -1,10 +1,4 @@
-<b>
-Default \e[102mLight green <br>
-Default \e[101mLight red <br>
-Default \e[91mLight red <br>
-Default \e[92mLight green <br>
-Default \e[105mLight magenta  <br>
-Default \e[96mLight cyan <br>
-[color=#FF0000]h[/color][color=#FF8000]e[/color][color=#FFFF00]l[/color][color=#007940]l[/color][color=#4040FF]o[/color] 
-</b>
+<div class="html-rainbow-text" style="text-align: center;">
+	<span style="color:#ff8000">R</span><span style="color:#ffff00">a</span><span style="color:#80ff00">i</span><span style="color:#00ff00">n</span><span style="color:#00ff80">b</span><span style="color:#00ffff">o</span><span style="color:#007fff">w</span><span style="color: transparent;text-shadow: none;">&nbsp;</span><span style="color:#7f00ff">T</span><span style="color:#ff00ff">e</span><span style="color:#ff0080">x</span><span style="color:#ff0000">t</span>
+</div>
 
