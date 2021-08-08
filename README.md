@@ -5,8 +5,9 @@ SSH+SSL+DROPBEAR+SQUID autoscript for Debian VPS
 
 Tested on Debian10 (Buster)  X64 
 
-To install
-     wget https://raw.githubusercontent.com/Tharuka-Sandaruwan/Debian_SSH_VPS_script/main/autoscript && chmod +x autoscript && ./autoscript
+To install:
+
+    wget https://raw.githubusercontent.com/Tharuka-Sandaruwan/Debian_SSH_VPS_script/main/autoscript && chmod +x autoscript && ./autoscript
 
   PORTS
 
