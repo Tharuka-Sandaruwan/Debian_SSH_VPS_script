@@ -1,0 +1,272 @@
+#!/bin/bash
+
+
+function create_user() {
+  echo -e "\e[36m------------------------------------------\e[0m"
+        read -p "※ Enter Username : " uname
+        egrep "^$uname:" /etc/passwd >/dev/null
+        if [ $? -eq 0 ]; then
+        echo -e "Username \e[31m$uname\e[0m Already Register ..!"
+        exit 1
+        else
+        read -p "※ Enter Password : " pass
+        read -p "※ Total Days To Exp Or Y-M-D : " expdate
+        today="$(date +"%Y-%m-%d")"
+        expire=$(date -d "$expdate days" +"%Y-%m-%d")
+        useradd -M -N -s /bin/false -e $expire $uname
+        echo $uname:$pass | chpasswd
+clear
+        echo " ";
+        echo " ";
+        echo " ";
+        echo -e "
+\e[34;1m   __      __       .__                             ._.  \e[0m
+\e[34;1m  /  \    /  \ ____ |  |   ____  ____   _____   ____| |  \e[0m
+\e[34;1m  \   \/\/   // __ \|  | _/ ___\/  _ \ /     \_/ __ \ |  \e[0m
+\e[34;1m   \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/\|  \e[0m
+\e[34;1m    \__/\  /  \___  >____/\___  >____/|__|_|  /\___ >_  \e[0m
+\e[34;1m         \/       \/          \/            \/     \/\/  \e[0m
+\e[31;1m        VPS AUTOSCRIPT BY DAVID ARMSTRONG                \e[0m";
+        echo " ";
+        echo " ";
+        echo " ◎ Details For Your Account ◎";
+        echo " ";
+        echo -e "  \e[34m※\e[0m Username   : \e[34m$uname\e[0m";
+        echo -e "  \e[34m※\e[0m Password   : \e[34m$pass\e[0m";
+        echo -e "  \e[32m※\e[0m Expired On : \e[32m$(date -d "$expdate days" +"%d-%m-%Y")\e[0m";
+        echo " ";
+        echo " ";
+        echo " ";
+        echo " ";
+        fi
+}
+
+function renew_user() {
+  echo -e "\e[36m------------------------------------------\e[0m"
+    read -p "※ Enter Username To Renew    : " uname
+    egrep "^$uname" /etc/passwd >/dev/null
+        if [ $? -eq 1 ]; then
+        echo -e "Username \e[31m$uname\e[0m Does Not Exist ..!"
+        exit 1
+        else
+        exp="$(chage -l $uname | grep "Account expires" | awk -F": " '{print $2}')"
+        exp1=`date -d "$exp now" +"%Y-%m-%d"`
+        exp2=`date -d "$exp days" +%s`
+        currentdate=`date +%s`
+        exp3=$(($exp2 - $currentdate)) 
+        exp4=$(($exp3 / 86400))  
+  echo -e "* Today Date Y-M-D           : \e[34m$(date -d today +"%Y-%m-%d")\e[0m"
+  echo -e "* Current Expiry Date Y-M-D  : \e[33m$exp1\e[0m"
+  echo -e "* Remaining Days To Expiry   : \e[31m$exp4\e[0m"
+    read -p "* Total Days To Exp Or Y-M-D : " expdate
+    today="$(date +"%Y-%m-%d")"
+        expire=$(date -d "$expdate days" +"%Y-%m-%d")
+    usermod -e $expire $uname
+clear
+        echo " ";
+        echo " ";
+        echo -e "
+\e[34;1m   __      __       .__                             ._.  \e[0m
+\e[34;1m  /  \    /  \ ____ |  |   ____  ____   _____   ____| |  \e[0m
+\e[34;1m  \   \/\/   // __ \|  | _/ ___\/  _ \ /     \_/ __ \ |  \e[0m
+\e[34;1m   \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/\|  \e[0m
+\e[34;1m    \__/\  /  \___  >____/\___  >____/|__|_|  /\___ >_  \e[0m
+\e[34;1m         \/       \/          \/            \/     \/\/  \e[0m
+\e[31;1m        VPS AUTOSCRIPT BY DAVID ARMSTRONG                \e[0m";
+        echo " ";
+        echo " ";
+        echo "◎ Details For Your Account ◎";
+        echo " ";
+        echo -e "  \e[34m※\e[0m Username   : \e[34m$uname\e[0m";
+        echo -e "  \e[32m※\e[0m New Expiry : \e[32m$(date -d "$expdate days" +"%d-%m-%Y")\e[0m";
+        echo " ";
+        
+        fi
+}
+
+function delete_user(){
+echo -e "\e[36m------------------------------------------\e[0m"
+read -p "Enter Username To Be Remove : " username
+
+egrep "^$username" /etc/passwd >/dev/null
+if [ $? -eq 0 ]; then
+        read -p "Delete User '$username' → [y/n] ..? : " -e -i y REMOVE
+        if [[ "$REMOVE" = 'y' ]]; then
+                userdel $username
+    echo -e "\e[36m------------------------------------------\e[0m"
+                echo -e "\e[33mSuccesfully Delete User\e[0m \e[34m$username\e[0m"
+    echo -e "\e[36m------------------------------------------\e[0m"
+        else
+                echo -e "Delete Account \e[34m$username\e[0m \e[31mCancelled ..!\e[0m"
+    echo -e "\e[36m------------------------------------------\e[0m"
+        fi
+else
+        echo -e "Username \e[31m$username\e[0m Does Not Exist ..!"
+  echo -e "\e[36m------------------------------------------\e[0m"
+        exit 1
+fi
+}
+
+function user_list(){
+clear
+echo -e "\e[31m※\e[0m \e[33mVPS by DAVID ARMSTRONG\e[0m \e[31m※\e[0m"
+echo -e "\e[36m--------------------------------------------\e[0m"
+echo "BIL  USERNAME        STATUS       EXP DATE   "
+echo -e "\e[36m--------------------------------------------\e[0m"
+C=1
+ON=0
+OFF=0
+while read mumetndase
+do
+        AKUN="$(echo $mumetndase | cut -d: -f1)"
+        ID="$(echo $mumetndase | grep -v nobody | cut -d: -f3)"
+        exp="$(chage -l $AKUN | grep "Account expires" | awk -F": " '{print $2}')"
+        cat /etc/openvpn/tcp_stats.log /etc/openvpn/udp_stats.log > /etc/openvpn/openvpn-status.log
+        online="$(cat /etc/openvpn/openvpn-status.log | grep -Eom 1 $AKUN | grep -Eom 1 $AKUN)"
+        if [[ $ID -ge 500 ]]; then
+        if [[ -z $online ]]; then
+        printf "%-4s %-15s %-10s %-3s\n" "$C." "$AKUN" "OFFLINE" "$exp"
+        OFF=$((OFF+1))
+        else
+        printf "%-4s %-15s %-10s %-3s\n" "$C." "$AKUN" "ONLINE" "$exp"
+        ON=$((ON+1))
+        fi
+        C=$((C+1))
+        fi
+JUMLAH="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
+done < /etc/passwd
+echo -e "\e[36m----------------------------------------------\e[0m"
+echo -e "TOTAL USER : \e[34m$JUMLAH\e[0m    ONLINE : \e[32m$ON\e[0m    OFFLINE : \e[31m$OFF\e[0m"
+echo -e "\e[36m----------------------------------------------\e[0m"
+}
+
+function expired_users(){
+clear
+echo -e "\e[36m---------------------------------\e[0m"
+echo "BIL  USERNAME          EXPIRED "
+echo -e "\e[36m---------------------------------\e[0m"
+count=1
+total=0
+        cat /etc/shadow | cut -d: -f1,8 | sed /:$/d > /tmp/expirelist.txt
+        totalaccounts=`cat /tmp/expirelist.txt | wc -l`
+        for((i=1; i<=$totalaccounts; i++ )); do
+        tuserval=`head -n $i /tmp/expirelist.txt | tail -n 1`
+                username=`echo $tuserval | cut -f1 -d:`
+                userexp=`echo $tuserval | cut -f2 -d:`
+                userexpireinseconds=$(( $userexp * 86400 ))
+                todaystime=`date +%s`
+                expired="$(chage -l $username | grep "Account expires" | awk -F": " '{print $2}')"
+                if [ $userexpireinseconds -lt $todaystime ] ; then
+                        printf "%-4s %-15s %-10s %-3s\n" "$count." "$username" "$expired"
+                        count=$((count+1))
+      total=$((total+1))
+                fi
+        done
+        echo -e "\e[36m---------------------------------\e[0m"
+        echo -e "    TOTAL EXPIRED USER : \e[31m$total\e[0m"
+        echo -e "\e[36m---------------------------------\e[0m"
+rm -r /tmp/*.txt
+}
+
+function not_expired_users(){
+clear
+echo -e "\e[36m---------------------------------\e[0m"
+echo "BIL  USERNAME          EXPIRED "
+echo -e "\e[36m---------------------------------\e[0m"
+count=1
+total=0
+    cat /etc/shadow | cut -d: -f1,8 | sed /:$/d > /tmp/expirelist.txt
+    totalaccounts=`cat /tmp/expirelist.txt | wc -l`
+    for((i=1; i<=$totalaccounts; i++ )); do
+    tuserval=`head -n $i /tmp/expirelist.txt | tail -n 1`
+        username=`echo $tuserval | cut -f1 -d:`
+        userexp=`echo $tuserval | cut -f2 -d:`
+        userexpireinseconds=$(( $userexp * 86400 ))
+        todaystime=`date +%s`
+        expired="$(chage -l $username | grep "Account expires" | awk -F": " '{print $2}')"
+        if [ $userexpireinseconds -gt $todaystime ] ; then
+        printf "%-4s %-15s %-10s %-3s\n" "$count." "$username" "$expired"
+        count=$((count+1))
+        total=$((total+1))
+        fi
+    done
+        echo -e "\e[36m---------------------------------\e[0m"
+        echo -e "  TOTAL NOT EXPIRED USER : \e[32m$total\e[0m "
+        echo -e "\e[36m---------------------------------\e[0m"
+rm -r /tmp/*.txt
+}
+
+
+clear
+echo -e "
+\e[34;1m   __      __       .__                             ._.  \e[0m
+\e[34;1m  /  \    /  \ ____ |  |   ____  ____   _____   ____| |  \e[0m
+\e[34;1m  \   \/\/   // __ \|  | _/ ___\/  _ \ /     \_/ __ \ |  \e[0m
+\e[34;1m   \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/\|  \e[0m
+\e[34;1m    \__/\  /  \___  >____/\___  >____/|__|_|  /\___ >_  \e[0m
+\e[34;1m         \/       \/          \/            \/     \/\/  \e[0m
+\e[31;1m        VPS AUTOSCRIPT BY DAVID ARMSTRONG                \e[0m";
+PS3='
+Please Enter Your Choice From 1 → 11 : '
+options=(
+"Ports List" "Add User" "Renew User" "Delete User" "Users List" "Expired Users" "Users Not Expired" "Speedtest" "VPS RAM usage" "Change Password" "Quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Add User")
+            create_user
+                break
+            ;; 
+        "Renew User")
+            renew_user
+            break
+            ;;
+        "Ports List")
+            clear
+            echo -e "
+            \e[34;1m .......................     \e[0m
+            \e[34;1m  OpenSSH Port : 22  \e[0m
+            \e[34;1m  Dropbear Port: 442 555  \e[0m
+            \e[34;1m  Stunnel Port : 443 445  \e[0m
+            \e[34;1m  Squid Port : 3128 8000 8080  \e[0m
+            \e[34;1m  Badvpn Port : 7300  \e[0m
+            \e[34;1m .......................     \e[0m
+            \e[31;1m        VPS AUTOSCRIPT BY DAVID ARMSTRONG                \e[0m";
+            break
+             ;;
+        "Delete User")
+            delete_user
+            break
+             ;;
+        "Users List")
+            user_list
+            break
+            ;;
+        "VPS RAM usage")
+                    free -h | grep -v + > /tmp/ramcache
+            cat /tmp/ramcache | grep -v "Swap"
+            break
+            ;;
+                "Users Not Expired")
+                        not_expired_users
+                        break
+                        ;;
+                "Expired Users")
+                        expired_users
+                        break
+                        ;;          
+                 "Speedtest")
+                   speedtest
+                     break
+                      ;;       
+                "Change Password")
+                        passwd
+                        break
+                        ;;
+        "Quit")
+            break
+            ;;
+        *) echo invalid option;;
+    esac
+done
+
