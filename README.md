@@ -20,7 +20,7 @@ Tested on Debian10 (Buster)  X64
   * can use https://html-online.com/editor/ to make a server banner.         
   * Please add auto reboot after completion(if you need)
         
-    sudo nano /etc/crontab
-    0 0 * * * root reboot 
+        sudo nano /etc/crontab
+        0 0 * * * root reboot 
 
   Script by: Tharuka Sandaruwan
