@@ -23,4 +23,4 @@ Tested on Debian10 (Buster)  X64
     sudo nano /etc/crontab
     0 0 * * * root reboot 
 
-
+  Script by: Tharuka Sandaruwan
