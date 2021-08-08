@@ -2,7 +2,7 @@
 # ***********************************************
 #       Simple Script to setup Debian VPS       *
 # This Script only setup SSH,SSl,Dropbear,squid *
-#          Script by : David Armstrong          *
+#        Script by : Tharuka Sandaruwan         *
 # ***********************************************
 # 
 
@@ -12,7 +12,7 @@ apt-get upgrade -y
 clear
 
 # downloading menu
-wget -O /usr/local/bin/menu "https://raw.githubusercontent.com/d-a-v-i-d-a-r-m-s-t-r-on-g/sshvps/main/files/menu"
+wget -O /usr/local/bin/menu "https://raw.githubusercontent.com/Tharuka-Sandaruwan/Debian_SSH_VPS_script/main/files/menu"
 chmod +x /usr/local/bin/menu
 
 #setting the time zone to Sri Lankan (GTM +0530) 
@@ -40,7 +40,7 @@ clear
 
 
 
-
+#getting required libraries
 apt-get -y autoremove;
 apt-get -y install wget curl;
 apt-get install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-transport-https apt-show-versions python unzip -y
@@ -50,12 +50,12 @@ clear
 # ssh
 sed -i 's/#Banner/Banner/g' /etc/ssh/sshd_config
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
-wget -O /etc/issue.net "https://raw.githubusercontent.com/d-a-v-i-d-a-r-m-s-t-r-on-g/sshvps/main/files/issue.net"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/Tharuka-Sandaruwan/Debian_SSH_VPS_script/main/files/issue.net"
 
 
 # dropbear
 apt-get -y install dropbear
-wget -O /etc/default/dropbear "https://raw.githubusercontent.com/d-a-v-i-d-a-r-m-s-t-r-on-g/sshvps/main/files/dropbear"
+wget -O /etc/default/dropbear "https://raw.githubusercontent.com/Tharuka-Sandaruwan/Debian_SSH_VPS_script/main/files/dropbear"
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
@@ -67,11 +67,11 @@ myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
 
 # squid3
 apt-get -y install squid
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/d-a-v-i-d-a-r-m-s-t-r-on-g/sshvps/main/files/squid.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/Tharuka-Sandaruwan/Debian_SSH_VPS_script/main/files/squid.conf"
 sed -i "s/ipserver/$myip/g" /etc/squid/squid.conf
 
 # Setting Server
-wget -O /etc/rc.local "https://raw.githubusercontent.com/d-a-v-i-d-a-r-m-s-t-r-on-g/sshvps/main/files/rc.local"
+wget -O /etc/rc.local "https://raw.githubusercontent.com/Tharuka-Sandaruwan/Debian_SSH_VPS_script/main/files/rc.local"
 chmod +x /etc/rc.local
 
 #getting things ready to compile badvpn
@@ -86,7 +86,7 @@ apt-get install -y build-essential >/dev/null 2>/dev/null
 apt-get install -y cmake >/dev/null 2>/dev/null
 
 # compiling and installing badvpn
-wget https://github.com/d-a-v-i-d-a-r-m-s-t-r-on-g/sshvps/raw/main/badvpn/badvpn-1.999.128.tar.bz2 -o /dev/null
+wget https://github.com/Tharuka-Sandaruwan/Debian_SSH_VPS_script/raw/main/badvpn/badvpn-1.999.128.tar.bz2 -o /dev/null
 tar -xf badvpn-1.999.128.tar.bz2
 mkdir /etc/badvpn-install
 cd /etc/badvpn-install
@@ -98,13 +98,13 @@ cd ; rm -rf badvpn.sh badvpn-1.999.128/ badvpn-1.999.128.tar.bz2 >/dev/null 2>/d
 
 # Stunnel installing
 apt-get install stunnel4 -y
-wget -P /etc/stunnel/ "https://raw.githubusercontent.com/d-a-v-i-d-a-r-m-s-t-r-on-g/sshvps/main/files/stunnel.conf"
+wget -P /etc/stunnel/ "https://raw.githubusercontent.com/Tharuka-Sandaruwan/Debian_SSH_VPS_script/main/files/stunnel.conf"
  # Creating stunnel certifcate using openssl
-openssl req -new -x509 -days 9999 -nodes -subj "/C=US/ST=SBH/L=TWU/O=DAVID/OU=DAVID/CN=DAVID" -out /etc/stunnel/stunnel.pem -keyout /etc/stunnel/stunnel.pem &> /dev/null
+openssl req -new -x509 -days 9999 -nodes -subj "/C=US/ST=SBH/L=TWU/O=THARUKA/OU=SANDARUWAN/CN=THARUKA" -out /etc/stunnel/stunnel.pem -keyout /etc/stunnel/stunnel.pem &> /dev/null
 ##  > /dev/null 2>&1
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 
-# Allowing ALL TCP ports for our machine (Simple workaround for policy-based VPS)
+# Allowing ALL TCP ports for VPS (Simple workaround for policy-based VPS)
 #iptables -A INPUT -s $(wget -4qO- http://ipinfo.io/ip) -p tcp -m multiport --dport 1:65535 -j ACCEPT
 
 
