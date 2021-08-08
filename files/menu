@@ -26,10 +26,10 @@ clear
 \e[34;1m   \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/\|  \e[0m
 \e[34;1m    \__/\  /  \___  >____/\___  >____/|__|_|  /\___ >_  \e[0m
 \e[34;1m         \/       \/          \/            \/     \/\/  \e[0m
-\e[31;1m        VPS AUTOSCRIPT BY DAVID ARMSTRONG                \e[0m";
+\e[31;1m        VPS AUTOSCRIPT BY THARUKA SANDARUWAN             \e[0m";
         echo " ";
         echo " ";
-        echo " ◎ Details For Your Account ◎";
+        echo " * Details For Your Account *";
         echo " ";
         echo -e "  \e[34m※\e[0m Username   : \e[34m$uname\e[0m";
         echo -e "  \e[34m※\e[0m Password   : \e[34m$pass\e[0m";
@@ -72,10 +72,10 @@ clear
 \e[34;1m   \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/\|  \e[0m
 \e[34;1m    \__/\  /  \___  >____/\___  >____/|__|_|  /\___ >_  \e[0m
 \e[34;1m         \/       \/          \/            \/     \/\/  \e[0m
-\e[31;1m        VPS AUTOSCRIPT BY DAVID ARMSTRONG                \e[0m";
+\e[31;1m        VPS AUTOSCRIPT BY THARUKA SANDARUWAN             \e[0m";
         echo " ";
         echo " ";
-        echo "◎ Details For Your Account ◎";
+        echo "* Details For Your Account *";
         echo " ";
         echo -e "  \e[34m※\e[0m Username   : \e[34m$uname\e[0m";
         echo -e "  \e[32m※\e[0m New Expiry : \e[32m$(date -d "$expdate days" +"%d-%m-%Y")\e[0m";
@@ -109,7 +109,7 @@ fi
 
 function user_list(){
 clear
-echo -e "\e[31m※\e[0m \e[33mVPS by DAVID ARMSTRONG\e[0m \e[31m※\e[0m"
+echo -e "\e[31m※\e[0m \e[33mVPS script by THARUKA SANDARUWAN\e[0m \e[31m※\e[0m"
 echo -e "\e[36m--------------------------------------------\e[0m"
 echo "BIL  USERNAME        STATUS       EXP DATE   "
 echo -e "\e[36m--------------------------------------------\e[0m"
@@ -205,7 +205,7 @@ echo -e "
 \e[34;1m   \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/\|  \e[0m
 \e[34;1m    \__/\  /  \___  >____/\___  >____/|__|_|  /\___ >_  \e[0m
 \e[34;1m         \/       \/          \/            \/     \/\/  \e[0m
-\e[31;1m        VPS AUTOSCRIPT BY DAVID ARMSTRONG                \e[0m";
+\e[31;1m        VPS AUTOSCRIPT BY THARUKA SANDARUWAN              \e[0m";
 PS3='
 Please Enter Your Choice From 1 → 11 : '
 options=(
@@ -231,7 +231,7 @@ do
             \e[34;1m  Squid Port : 3128 8000 8080  \e[0m
             \e[34;1m  Badvpn Port : 7300  \e[0m
             \e[34;1m .......................     \e[0m
-            \e[31;1m        VPS AUTOSCRIPT BY DAVID ARMSTRONG                \e[0m";
+            \e[31;1m        VPS AUTOSCRIPT BY THARUKA SANDARUWAN           \e[0m";
             break
              ;;
         "Delete User")
