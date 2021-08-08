@@ -12,10 +12,7 @@ To install:
   PORTS
 
     OpenSSH Port : 22
-    Nginx Port : 80
-    Privoxy Port : 8181 8086
     Dropbear Port: 442 555
-    OpenVPN Port : 110. 25000
     Stunnel Port : 443 445
     Squid Port : 3128 8000 8080
     Badvpn Port : 7300
