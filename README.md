@@ -16,8 +16,8 @@ Tested on Debian10 (Buster)  X64
     Squid Port : 3128 8000 8080
     Badvpn Port : 7300
 
-  *you can change the ports by changing the config files
-  *can use https://html-online.com/editor/ to make a server banner.
+  *you can change the ports by changing the config files                        
+  *can use https://html-online.com/editor/ to make a server banner.         
   *Please add auto reboot after completion(if you need)
         
     sudo nano /etc/crontab
