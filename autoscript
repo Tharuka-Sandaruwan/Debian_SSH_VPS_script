@@ -117,6 +117,29 @@ sudo apt-get update
 curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
 sudo apt-get install speedtest
 
+#setting up the autokill
+
+cd /usr/bin
+wget -O kick "https://raw.githubusercontent.com/Tharuka-Sandaruwan/Debian_SSH_VPS_script/main/files/kick.sh"
+chmod +x kick
+
+cd
+
+echo "* * * * * root /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 5; /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 10; /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 15; /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 20; /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 25; /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 30; /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 35; /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 40; /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 45; /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 50; /usr/bin/kick" >> /etc/crontab
+echo "* * * * * root sleep 55; /usr/bin/kick" >> /etc/crontab
+
+service cron restart
+
 
 read -n1 -r -p "    Setting up the VPS is complete! Press Any Key To Reboot....        "
 reboot
