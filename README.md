@@ -20,6 +20,7 @@ To install:
   * you can change the ports by changing the config files                        
   * can use https://html-online.com/editor/ to make a server banner.         
   * Please add auto reboot after completion(if you need)
+  * Multilogin is disabled.only one device can connect through one account.
         
         sudo nano /etc/crontab
         0 0 * * * root reboot 
