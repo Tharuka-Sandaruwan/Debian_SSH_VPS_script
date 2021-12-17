@@ -28,4 +28,5 @@ To install:
   * Multilogin is disabled.only one device can connect through one account.
   
   Script modified by: Tharuka Sandaruwan
-original script : https://github.com/xiihaiqal/AutoScriptVPS
+  original script : https://github.com/xiihaiqal/AutoScriptVPS
+
