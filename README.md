@@ -27,4 +27,4 @@ To install:
         
   * Multilogin is disabled.only one device can connect through one account.
   
-  Script by: Tharuka Sandaruwan
+  Script modified by: Tharuka Sandaruwan
