@@ -118,17 +118,17 @@ ON=0
 OFF=0
 while read mumetndase
 do
-        AKUN="$(echo $mumetndase | cut -d: -f1)"
+        acounts="$(echo $mumetndase | cut -d: -f1)"
         ID="$(echo $mumetndase | grep -v nobody | cut -d: -f3)"
-        exp="$(chage -l $AKUN | grep "Account expires" | awk -F": " '{print $2}')"
+        exp="$(chage -l $acounts | grep "Account expires" | awk -F": " '{print $2}')"
         cat /etc/openvpn/tcp_stats.log /etc/openvpn/udp_stats.log > /etc/openvpn/openvpn-status.log
-        online="$(cat /etc/openvpn/openvpn-status.log | grep -Eom 1 $AKUN | grep -Eom 1 $AKUN)"
+        online="$(cat /etc/openvpn/openvpn-status.log | grep -Eom 1 $acounts | grep -Eom 1 $acounts)"
         if [[ $ID -ge 500 ]]; then
         if [[ -z $online ]]; then
-        printf "%-4s %-15s %-10s %-3s\n" "$C." "$AKUN" "OFFLINE" "$exp"
+        printf "%-4s %-15s %-10s %-3s\n" "$C." "$acounts" "OFFLINE" "$exp"
         OFF=$((OFF+1))
         else
-        printf "%-4s %-15s %-10s %-3s\n" "$C." "$AKUN" "ONLINE" "$exp"
+        printf "%-4s %-15s %-10s %-3s\n" "$C." "$acounts" "ONLINE" "$exp"
         ON=$((ON+1))
         fi
         C=$((C+1))
@@ -243,10 +243,10 @@ do
             break
             ;;
         "VPS RAM usage")
-                    free -h | grep -v + > /tmp/ramcache
-            cat /tmp/ramcache | grep -v "Swap"
+            htop
             break
             ;;
+			
                 "Users Not Expired")
                         not_expired_users
                         break

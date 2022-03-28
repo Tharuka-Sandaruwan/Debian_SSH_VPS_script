@@ -117,6 +117,8 @@ sudo apt-get update
 curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
 sudo apt-get install speedtest
 
+#installing htop
+sudo apt-get install htop
 
 
 read -n1 -r -p "    Setting up the VPS is complete! Press Any Key To Reboot....        "
