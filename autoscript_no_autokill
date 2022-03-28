@@ -60,7 +60,7 @@ echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
 
-
+#getting ip info and setting them
 myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
 myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
 
@@ -116,6 +116,8 @@ rm *.txt;rm *.tar.gz;rm *.deb;rm *.asc;rm *.zip;rm ddos*;
 sudo apt-get update
 curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
 sudo apt-get install speedtest
+
+
 
 read -n1 -r -p "    Setting up the VPS is complete! Press Any Key To Reboot....        "
 reboot
