@@ -4,7 +4,8 @@
 # This Script only setup SSH,SSl,Dropbear,squid *
 #        Script by : Tharuka Sandaruwan         *
 # ***********************************************
-# 
+#
+clear 
 echo -e "
 \e[34;1m   __      __       .__                             ._.  \e[0m
 \e[34;1m  /  \    /  \ ____ |  |   ____  ____   _____   ____| |  \e[0m
