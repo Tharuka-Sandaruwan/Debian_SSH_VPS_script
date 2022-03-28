@@ -152,8 +152,7 @@ sudo ufw enable
 read -n1 -r -p " WARNING! firewall is configured to block all the ports instead of the ports mentioned in the vps script.You can open additional ports manually later.Press Any Key To continue....        "
 
 
-#adding autoreboot to the server cron job
-sudo crontab -l | { cat; echo "0 0 * * * root reboot"; } | crontab -
+
 
 read -n1 -r -p "    Setting up the VPS is complete! Press Any Key To Reboot....        "
 reboot
