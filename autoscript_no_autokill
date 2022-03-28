@@ -5,6 +5,16 @@
 #        Script by : Tharuka Sandaruwan         *
 # ***********************************************
 # 
+echo -e "
+\e[34;1m   __      __       .__                             ._.  \e[0m
+\e[34;1m  /  \    /  \ ____ |  |   ____  ____   _____   ____| |  \e[0m
+\e[34;1m  \   \/\/   // __ \|  | _/ ___\/  _ \ /     \_/ __ \ |  \e[0m
+\e[34;1m   \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/\|  \e[0m
+\e[34;1m    \__/\  /  \___  >____/\___  >____/|__|_|  /\___ >_  \e[0m
+\e[34;1m         \/       \/          \/            \/     \/\/  \e[0m
+\e[31;1m        VPS AUTOSCRIPT BY THARUKA SANDARUWAN              \e[0m";
+
+read -n1 -r -p "Press Any Key To Setup Your VPS....        "
 
 #getting things ready
 apt-get update
