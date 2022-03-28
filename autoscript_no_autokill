@@ -127,10 +127,10 @@ rm *.txt;rm *.tar.gz;rm *.deb;rm *.asc;rm *.zip;rm ddos*;
 #speedtest
 sudo apt-get update
 curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
-sudo apt-get install speedtest
+sudo apt-get install speedtest 
 
 #installing htop
-sudo apt-get install htop
+sudo apt-get install htop 
 clear
 
 #setting up the firewall
@@ -147,7 +147,7 @@ sudo ufw allow 445/tcp
 sudo ufw allow 555/tcp  
 sudo ufw allow 3128/tcp 
 
-sudo ufw enable -y
+sudo ufw enable 
 
 read -n1 -r -p " WARNING! firewall is configured to block all the ports instead of the ports mentioned in the vps script.You can open additional ports manually later.Press Any Key To continue....        "
 
