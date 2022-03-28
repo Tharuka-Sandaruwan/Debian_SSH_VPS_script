@@ -130,6 +130,25 @@ sudo apt-get install speedtest
 
 #installing htop
 sudo apt-get install htop
+clear
+
+#setting up the firewall
+sudo apt-get install ufw
+
+sudo ufw allow 22/tcp   
+sudo ufw allow 442/tcp  
+sudo ufw allow 443/tcp  
+sudo ufw allow 8000/tcp 
+sudo ufw allow 8080/tcp 
+sudo ufw allow 7300/udp 
+sudo ufw allow 7300/tcp 
+sudo ufw allow 445/tcp  
+sudo ufw allow 555/tcp  
+sudo ufw allow 3128/tcp 
+
+sudo ufw enable -y
+
+read -n1 -r -p " WARNING! firewall is configured to block all the ports instead of the ports mentioned in the vps script.You can open additional ports manually later.Press Any Key To continue....        "
 
 
 #adding autoreboot to the server cron job
