@@ -15,6 +15,7 @@ echo -e "
 \e[31;1m        VPS AUTOSCRIPT BY THARUKA SANDARUWAN              \e[0m";
 
 read -n1 -r -p "Press Any Key To Setup Your VPS....        "
+clear
 
 #getting things ready
 apt-get update
