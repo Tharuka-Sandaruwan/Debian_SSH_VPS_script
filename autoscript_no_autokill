@@ -121,5 +121,8 @@ sudo apt-get install speedtest
 sudo apt-get install htop
 
 
+#adding autoreboot to the server cron job
+sudo crontab -l | { cat; echo "0 0 * * * root reboot"; } | crontab -
+
 read -n1 -r -p "    Setting up the VPS is complete! Press Any Key To Reboot....        "
 reboot
