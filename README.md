@@ -25,7 +25,7 @@ To install:
         sudo nano /etc/crontab
         0 0 * * * root reboot 
         
-  * Multilogin is disabled.only one device can connect through one account.
+  * Multilogin is enabled.if you need to disable it.install the autokill enabled script.so only one device can connect through one account.
   
   Script modified by: Tharuka Sandaruwan
  
