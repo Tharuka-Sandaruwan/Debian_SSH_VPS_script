@@ -125,9 +125,8 @@ rm *.txt;rm *.tar.gz;rm *.deb;rm *.asc;rm *.zip;rm ddos*;
 
 
 #speedtest
-sudo apt-get update
-curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
-sudo apt-get install speedtest 
+curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+sudo apt-get install speedtest
 
 #installing htop
 sudo apt-get install htop 
